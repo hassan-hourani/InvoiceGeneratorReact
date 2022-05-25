@@ -121,6 +121,9 @@ text-align: left;
   font-size: xx-large;
   font-weight: 600;
 }
+button, a{
+  cursor: pointer;
+}
 @media (max-width: 500px) {
   .payment {
     /* margin: 0; */
