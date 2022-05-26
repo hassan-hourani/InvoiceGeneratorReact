@@ -1,7 +1,12 @@
 import React, { useState } from "react"
 import mailIcon from "./assets/icons/mailIcon.png"
+const WashCarPrice = 10
+const MowLawnPrice = 20
+const PullWeedsPrice = 30
 function App() {
   const [servicesState, setServicesState] = useState([])
+  const [totalsState, setTotalsState] = useState(10)
+
   function handelClick(service) {
     if (!servicesState.includes(service))
       return (
@@ -17,7 +22,8 @@ function App() {
   }
 
   const servicesArray = servicesState.map(item => <h4 key={item}>{item}<a onClick={(e) => handelRemoveAnchor3(item)}>remove</a></h4>)
-  const pricesArray = servicesState.map(item => <p key={item}><span>$</span>{item === "Wash Car" ? "10" : item === "Mow Lawn" ? "20" : "30"}</p>)
+  const pricesArray = servicesState.map(item => <p key={item}><span>$</span>{item === "Wash Car" ? WashCarPrice : item === "Mow Lawn" ? MowLawnPrice : PullWeedsPrice}</p>)
+
   return (
     <>
       <div className="container">
@@ -48,7 +54,7 @@ function App() {
             </div>
             <div className="price">
               <p>TOTAL AMOUNT</p>
-              <p><span>$60</span></p>
+              <p><span>${pricesArray.map(item => item.props.children[1]).reduce((a, b) => a + b, 0)}</span></p>
             </div>
           </div>
           <button><img src={mailIcon} />Send Invoice</button>
