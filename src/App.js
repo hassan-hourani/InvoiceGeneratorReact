@@ -5,7 +5,6 @@ const MowLawnPrice = 20
 const PullWeedsPrice = 30
 function App() {
   const [servicesState, setServicesState] = useState([])
-  const [totalsState, setTotalsState] = useState(10)
 
   function handelClick(service) {
     if (!servicesState.includes(service))
@@ -21,7 +20,7 @@ function App() {
     return setServicesState(newArray)
   }
 
-  const servicesArray = servicesState.map(item => <h4 key={item}>{item}<a onClick={(e) => handelRemoveAnchor3(item)}>remove</a></h4>)
+  const servicesArray = servicesState.map(item => <h4 key={item}>{item}<a href="none" onClick={(e) => handelRemoveAnchor3(item)}>remove</a></h4>)
   const pricesArray = servicesState.map(item => <p key={item}><span>$</span>{item === "Wash Car" ? WashCarPrice : item === "Mow Lawn" ? MowLawnPrice : PullWeedsPrice}</p>)
 
   return (
@@ -57,7 +56,7 @@ function App() {
               <p><span>${pricesArray.map(item => item.props.children[1]).reduce((a, b) => a + b, 0)}</span></p>
             </div>
           </div>
-          <button><img src={mailIcon} />Send Invoice</button>
+          <button><img src={mailIcon} alt="mail icon" />Send Invoice</button>
         </div>
       </div>
     </>
