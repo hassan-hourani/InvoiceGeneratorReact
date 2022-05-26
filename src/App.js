@@ -14,13 +14,18 @@ function App() {
         })
       )
   }
+  function reset() {
+    return (
+      setServicesState([])
+    )
+  }
   function handelRemoveAnchor3(e) {
     let newArray = [...servicesState]
     newArray.splice(newArray.indexOf(e), 1)
     return setServicesState(newArray)
   }
 
-  const servicesArray = servicesState.map(item => <h4 key={item}>{item}<a href="none" onClick={(e) => handelRemoveAnchor3(item)}>remove</a></h4>)
+  const servicesArray = servicesState.map(item => <h4 key={item}>{item}<a onClick={(e) => handelRemoveAnchor3(item)}>remove</a></h4>)
   const pricesArray = servicesState.map(item => <p key={item}><span>$</span>{item === "Wash Car" ? WashCarPrice : item === "Mow Lawn" ? MowLawnPrice : PullWeedsPrice}</p>)
 
   return (
@@ -56,7 +61,7 @@ function App() {
               <p><span>${pricesArray.map(item => item.props.children[1]).reduce((a, b) => a + b, 0)}</span></p>
             </div>
           </div>
-          <button><img src={mailIcon} alt="mail icon" />Send Invoice</button>
+          <button onClick={reset}><img src={mailIcon} alt="mail icon" />Send Invoice</button>
         </div>
       </div>
     </>
